@@ -1,0 +1,30 @@
+﻿@model List<BDEVENTOS.Models.Participante>
+
+<h2>Lista de Participantes</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Nuevo Participante</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Categoría</th>
+            <th>Edad</th>
+            <th>Teléfono</th>
+            <th>Fecha Registro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Nombre</td>
+                <td>@p.Rol</td>
+                <td>@p.CategoriaEvento</td>
+                <td>@p.Edad</td>
+                <td>@p.Telefono</td>
+                <td>@p.FechaRegistro.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

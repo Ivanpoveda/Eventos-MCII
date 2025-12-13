@@ -1,0 +1,34 @@
+﻿@model BDEVENTOS.Models.SolicitudSoporte
+
+<h2>Editar Solicitud</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <!-- mismos campos que en Create -->
+    <div class="mb-3">
+        <label asp-for="Evento" class="form-label"></label>
+        <input asp-for="Evento" class="form-control" />
+        <span asp-validation-for="Evento" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="TipoEquipo" class="form-label"></label>
+        <input asp-for="TipoEquipo" type="number" class="form-control" />
+        <span asp-validation-for="TipoEquipo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Prioridad" class="form-label"></label>
+        <select asp-for="Prioridad" class="form-control">
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+        </select>
+        <span asp-validation-for="Prioridad" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaSolicitud" class="form-label"></label>
+        <input asp-for="FechaSolicitud" type="date" class="form-control" />
+        <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-warning">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

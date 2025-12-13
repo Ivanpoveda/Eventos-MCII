@@ -1,0 +1,39 @@
+﻿@model List<BDEVENTOS.Models.SolicitudSoporte>
+
+<h2>Solicitudes de Soporte</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<a asp-action="Create" class="btn btn-primary mb-3">Nueva Solicitud</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Tipo de Equipo</th>
+            <th>Prioridad</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Evento</td>
+                <td>@s.TipoEquipo</td>
+                <td>@s.Prioridad</td>
+                <td>@s.FechaSolicitud.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@s.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

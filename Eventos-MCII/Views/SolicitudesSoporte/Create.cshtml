@@ -1,0 +1,49 @@
+﻿@model BDEVENTOS.Models.SolicitudSoporte
+
+<h2>Nueva Solicitud</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Evento" class="form-label"></label>
+        <input asp-for="Evento" class="form-control" />
+        <span asp-validation-for="Evento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TipoEquipo" class="form-label"></label>
+        <select asp-for="TipoEquipo" class="form-control" required>
+            <option value="">Seleccione tipo de equipo</option>
+            <option value="1">Laptop</option>
+            <option value="2">Proyector</option>
+            <option value="3">Micrófono</option>
+            <option value="4">Pantalla</option>
+        </select>
+        <span asp-validation-for="TipoEquipo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Prioridad" class="form-label"></label>
+        <select asp-for="Prioridad" class="form-control">
+            <option value="">Seleccione prioridad</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+        </select>
+        <span asp-validation-for="Prioridad" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaSolicitud" class="form-label"></label>
+        <input asp-for="FechaSolicitud" type="date" class="form-control" />
+        <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,19 @@
+﻿@model Eventos_MCII.Views.Dashboard.IndexModel
+<h2>Dashboard</h2>
+
+<h3>Solicitudes por Prioridad</h3>
+<ul>
+    @foreach (var item in ViewBag.SolicitudesPorPrioridad)
+    {
+        <li>@item.Prioridad: @item.Total</li>
+    }
+</ul>
+
+<h3>Participantes por Categoría</h3>
+<ul>
+    @foreach (var item in ViewBag.ParticipantesPorCategoria)
+    {
+        <li>@item.Categoria: @item.Total</li>
+    }
+</ul>
+
