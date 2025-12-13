@@ -25,7 +25,7 @@ public class DashboardController : Controller
             .Select(g => new { Categoria = g.Key, Total = g.Count() })
             .ToList();
 
-        // Pasar datos a la vista
+
         ViewBag.SolicitudesPorPrioridad = solicitudesPorPrioridad;
         ViewBag.ParticipantesPorCategoria = participantesPorCategoria;
 
