@@ -1,35 +1,47 @@
-﻿using BDEVENTOS.Data;
+﻿using Eventos_MCII.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-public class DashboardController : Controller
+namespace Eventos_MCII.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public DashboardController(ApplicationDbContext context)
+    public class DashboardController : Controller
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        // Agrupar solicitudes por prioridad
-        var solicitudesPorPrioridad = _context.SolicitudesSoporte
-            .GroupBy(s => s.Prioridad)
-            .Select(g => new { Prioridad = g.Key, Total = g.Count() })
-            .ToList();
+        public DashboardController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-        // Agrupar participantes por categoría
-        var participantesPorCategoria = _context.Participantes
-            .GroupBy(p => p.CategoriaEvento)
-            .Select(g => new { Categoria = g.Key, Total = g.Count() })
-            .ToList();
+        public IActionResult Index()
+        {
+            // Agrupar solicitudes por prioridad
+            var solicitudesPorPrioridad = _context.SolicitudesSoporte
+                .GroupBy(s => s.Prioridad)
+                .Select(g => new
+                {
+                    Prioridad = g.Key,
+                    Total = g.Count()
+                })
+                .ToList();
 
-        // Pasar datos a la vista
-        ViewBag.SolicitudesPorPrioridad = solicitudesPorPrioridad;
-        ViewBag.ParticipantesPorCategoria = participantesPorCategoria;
+            // Agrupar participantes por categoría
+            var participantesPorCategoria = _context.Participantes
+                .GroupBy(p => p.CategoriaEvento)
+                .Select(g => new
+                {
+                    Categoria = g.Key,
+                    Total = g.Count()
+                })
+                .ToList();
 
-        return View();
+            // Pasar datos a la vista
+            ViewBag.SolicitudesPorPrioridad = solicitudesPorPrioridad;
+            ViewBag.ParticipantesPorCategoria = participantesPorCategoria;
+
+            return View();
+        }
     }
 }
+
 

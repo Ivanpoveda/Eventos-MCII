@@ -1,10 +1,12 @@
-﻿using System.Linq;
-using BDEVENTOS.Data;
-using BDEVENTOS.Models;
+﻿using Eventos_MCII.Data;
+using Eventos_MCII.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-namespace EventSupportManager.Controllers
+namespace Eventos_MCII.Controllers
 {
+    // Controlador encargado de la generación de reportes
+    // Aplica consultas LINQ utilizando EF Core
     public class ReportesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -14,29 +16,20 @@ namespace EventSupportManager.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // Reporte: cantidad de solicitudes agrupadas por prioridad
+        public IActionResult SolicitudesPorPrioridad()
         {
-            ViewBag.SolicitudesPorPrioridad =
-                _context.SolicitudesSoporte
+            var data = _context.SolicitudesSoporte
                 .GroupBy(s => s.Prioridad)
-                .Select(g => new
+                .Select(g => new ReportePrioridadVM
                 {
                     Prioridad = g.Key,
                     Total = g.Count()
                 })
+                .OrderByDescending(x => x.Total)
                 .ToList();
 
-            ViewBag.ParticipantesPorCategoria =
-                _context.Participantes
-                .GroupBy(p => p.CategoriaEvento)
-                .Select(g => new
-                {
-                    Categoria = g.Key,
-                    Total = g.Count()
-                })
-                .ToList();
-
-            return View();
+            return View(data);
         }
     }
 }
