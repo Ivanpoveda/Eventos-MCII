@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BDEVENTOS.Data;
-using BDEVENTOS.Models;
+﻿using BDEVENTOS.Models;
+using Eventos_MCII.Data;
+using Eventos_MCII.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-namespace BDEVENTOS.Controllers
+namespace Eventos_MCII.Controllers
 {
     public class SolicitudesSoporteController : Controller
     {
@@ -24,6 +26,7 @@ namespace BDEVENTOS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(SolicitudSoporte solicitud)
         {
             if (ModelState.IsValid)
@@ -31,7 +34,7 @@ namespace BDEVENTOS.Controllers
                 _context.SolicitudesSoporte.Add(solicitud);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Solicitud registrada correctamente.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(solicitud);
         }
@@ -47,6 +50,7 @@ namespace BDEVENTOS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, SolicitudSoporte solicitud)
         {
             if (id != solicitud.Id)
@@ -59,7 +63,7 @@ namespace BDEVENTOS.Controllers
                 _context.Update(solicitud);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Solicitud actualizada correctamente.";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(solicitud);
         }
@@ -75,6 +79,7 @@ namespace BDEVENTOS.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var solicitud = _context.SolicitudesSoporte.Find(id);
@@ -84,8 +89,7 @@ namespace BDEVENTOS.Controllers
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Solicitud eliminada correctamente.";
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
-

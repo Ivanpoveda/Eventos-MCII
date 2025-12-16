@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BDEVENTOS.Models;
+﻿using BDEVENTOS.Models;
+using Eventos_MCII.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace BDEVENTOS.Data
+namespace Eventos_MCII.Data
 {
     public class ApplicationDbContext : DbContext
     {
