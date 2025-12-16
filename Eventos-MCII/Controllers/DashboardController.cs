@@ -15,7 +15,7 @@ namespace Eventos_MCII.Controllers
 
         public IActionResult Index()
         {
-            // Agrupar solicitudes por prioridad
+            
             var solicitudesPorPrioridad = _context.SolicitudesSoporte
                 .GroupBy(s => s.Prioridad)
                 .Select(g => new
@@ -25,12 +25,7 @@ namespace Eventos_MCII.Controllers
                 })
                 .ToList();
 
-<<<<<<< HEAD
-
-        ViewBag.SolicitudesPorPrioridad = solicitudesPorPrioridad;
-        ViewBag.ParticipantesPorCategoria = participantesPorCategoria;
-=======
-            // Agrupar participantes por categoría
+           
             var participantesPorCategoria = _context.Participantes
                 .GroupBy(p => p.CategoriaEvento)
                 .Select(g => new
@@ -39,9 +34,8 @@ namespace Eventos_MCII.Controllers
                     Total = g.Count()
                 })
                 .ToList();
->>>>>>> ac939e7c8312f7391b0d938554a45548d8f0f79e
 
-            // Pasar datos a la vista
+            
             ViewBag.SolicitudesPorPrioridad = solicitudesPorPrioridad;
             ViewBag.ParticipantesPorCategoria = participantesPorCategoria;
 
