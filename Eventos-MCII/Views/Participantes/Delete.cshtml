@@ -1,0 +1,28 @@
+﻿@model Eventos_MCII.Models.Participante
+
+@{
+    ViewData["Title"] = "Eliminar Participante";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger fw-bold">Eliminar Participante</h2>
+    <hr />
+
+    <h4>¿Estás seguro que deseas eliminar este participante?</h4>
+    <div class="card bg-light mt-3">
+        <div class="card-body">
+            <p><strong>Nombre:</strong> @Model.Nombre</p>
+            <p><strong>Rol:</strong> @Model.Rol</p>
+            <p><strong>Categoría:</strong> @Model.CategoriaEvento</p>
+            <p><strong>Edad:</strong> @Model.Edad</p>
+            <p><strong>Teléfono:</strong> @Model.Telefono</p>
+            <p><strong>Fecha Registro:</strong> @Model.FechaRegistro.ToShortDateString()</p>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-3">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

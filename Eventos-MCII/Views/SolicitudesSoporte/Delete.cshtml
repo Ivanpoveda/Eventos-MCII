@@ -1,6 +1,6 @@
 ﻿@model BDEVENTOS.Models.SolicitudSoporte
 
-<h2>Eliminar Solicitud</h2>
+<h2 class="text-danger fw-bold">Eliminar Solicitud</h2>
 
 <div class="alert alert-danger">
     ¿Estás seguro que deseas eliminar esta solicitud?
@@ -20,7 +20,7 @@
     <dd class="col-sm-10">@Model.FechaSolicitud.ToString("dd/MM/yyyy HH:mm")</dd>
 </dl>
 
-<form asp-action="DeleteConfirmed" method="post">
+<form asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id" />
     <button type="submit" class="btn btn-danger">Eliminar</button>
     <a asp-action="Index" class="btn btn-secondary">Cancelar</a>

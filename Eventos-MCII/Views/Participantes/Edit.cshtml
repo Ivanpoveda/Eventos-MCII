@@ -1,0 +1,57 @@
+﻿@model Eventos_MCII.Models.Participante
+
+@{
+    ViewData["Title"] = "Editar Participante";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold">Editar Participante</h2>
+    <hr />
+
+    <form asp-action="Edit" method="post">
+        <div class="form-group mb-3">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Rol" class="form-label"></label>
+            <input asp-for="Rol" class="form-control" />
+            <span asp-validation-for="Rol" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="CategoriaEvento" class="form-label"></label>
+            <input asp-for="CategoriaEvento" class="form-control" />
+            <span asp-validation-for="CategoriaEvento" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Edad" class="form-label"></label>
+            <input asp-for="Edad" class="form-control" />
+            <span asp-validation-for="Edad" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" class="form-control" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="FechaRegistro" class="form-label"></label>
+            <input asp-for="FechaRegistro" class="form-control" type="date" />
+            <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,19 +1,137 @@
 ﻿@model Eventos_MCII.Views.Dashboard.IndexModel
-<h2>Dashboard</h2>
 
-<h3>Solicitudes por Prioridad</h3>
-<ul>
-    @foreach (var item in ViewBag.SolicitudesPorPrioridad)
-    {
-        <li>@item.Prioridad: @item.Total</li>
-    }
-</ul>
+<div class="container py-4">
 
-<h3>Participantes por Categoría</h3>
-<ul>
-    @foreach (var item in ViewBag.ParticipantesPorCategoria)
-    {
-        <li>@item.Categoria: @item.Total</li>
-    }
-</ul>
+    <h2 class="text-center text-primary fw-bold mb-5"> Dashboard General</h2>
+
+    <!-- Sección de Solicitudes -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h3 class="text-info text-center mb-4"> Solicitudes por Prioridad</h3>
+            <div class="row justify-content-center">
+                @foreach (var item in ViewBag.SolicitudesPorPrioridad)
+                {
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-gradient bg-dark shadow-sm border-info">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@item.Prioridad</h5>
+                                <p class="display-6 fw-bold">@item.Total</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Gráfico de Solicitudes -->
+            <div class="mt-4">
+                <canvas id="solicitudesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Participantes -->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-info text-center mb-4"> Participantes por Categoría</h3>
+            <div class="row justify-content-center">
+                @foreach (var item in ViewBag.ParticipantesPorCategoria)
+                {
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-gradient bg-dark shadow-sm border-success">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">@item.Categoria</h5>
+                                <p class="display-6 fw-bold">@item.Total</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Gráfico de Participantes -->
+            <div class="mt-4">
+                <canvas id="participantesChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        // Datos dinámicos desde ViewBag
+        const solicitudesLabels = [];
+        const solicitudesData = [];
+        @foreach (var item in ViewBag.SolicitudesPorPrioridad)
+        {
+            @:solicitudesLabels.push("@item.Prioridad");
+            @:solicitudesData.push(@item.Total);
+        }
+
+        const participantesLabels = [];
+        const participantesData = [];
+        @foreach (var item in ViewBag.ParticipantesPorCategoria)
+        {
+            @:participantesLabels.push("@item.Categoria");
+            @:participantesData.push(@item.Total);
+        }
+
+        // Gráfico de Solicitudes
+        new Chart(document.getElementById('solicitudesChart'), {
+            type: 'bar',
+            data: {
+                labels: solicitudesLabels,
+                datasets: [{
+                    label: 'Solicitudes por Prioridad',
+                    data: solicitudesData,
+                    backgroundColor: ['#dc3545', '#ffc107', '#198754']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Solicitudes por Prioridad',
+                        color: '#fff',
+                        font: { size: 18 }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { ticks: { color: '#fff' }, grid: { color: '#444' } },
+                    y: { ticks: { color: '#fff' }, grid: { color: '#444' } }
+                }
+            }
+        });
+
+        // Gráfico de Participantes
+        new Chart(document.getElementById('participantesChart'), {
+            type: 'bar',
+            data: {
+                labels: participantesLabels,
+                datasets: [{
+                    label: 'Participantes por Categoría',
+                    data: participantesData,
+                    backgroundColor: ['#0d6efd', '#20c997', '#6f42c1']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Participantes por Categoría',
+                        color: '#fff',
+                        font: { size: 18 }
+                    },
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { ticks: { color: '#fff' }, grid: { color: '#444' } },
+                    y: { ticks: { color: '#fff' }, grid: { color: '#444' } }
+                }
+            }
+        });
+    </script>
+}
 

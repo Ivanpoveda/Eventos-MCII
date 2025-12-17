@@ -1,31 +1,47 @@
 ﻿@model IEnumerable<Eventos_MCII.Models.Participante>
 
+@{
+    ViewData["Title"] = "Lista de Participantes";
+}
 
-<h2>Lista de Participantes</h2>
-<a asp-action="Create" class="btn btn-primary mb-3">Nuevo Participante</a>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary fw-bold">Lista de Participantes</h2>
+        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm">Nuevo Participante</a>
+    </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Rol</th>
-            <th>Categoría</th>
-            <th>Edad</th>
-            <th>Teléfono</th>
-            <th>Fecha Registro</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>@p.Nombre</td>
-                <td>@p.Rol</td>
-                <td>@p.CategoriaEvento</td>
-                <td>@p.Edad</td>
-                <td>@p.Telefono</td>
-                <td>@p.FechaRegistro.ToShortDateString()</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="card shadow-lg border-0">
+        <div class="card-body bg-dark text-white">
+            <table class="table table-hover table-bordered align-middle mb-0">
+                <thead class="table-light text-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Categoría</th>
+                        <th>Edad</th>
+                        <th>Teléfono</th>
+                        <th>Fecha Registro</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.Nombre</td>
+                            <td>@p.Rol</td>
+                            <td>@p.CategoriaEvento</td>
+                            <td>@p.Edad</td>
+                            <td>@p.Telefono</td>
+                            <td>@p.FechaRegistro.ToShortDateString()</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-warning me-2 shadow-sm">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-sm btn-danger shadow-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

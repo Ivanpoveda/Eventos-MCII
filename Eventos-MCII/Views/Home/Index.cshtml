@@ -2,16 +2,77 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center mt-5">
-    <h1 class="display-3 text-primary fw-bold">
-         ¡Bienvenido a Event Hall Management!
-    </h1>
-    <p class="lead text-white mt-3">
-        Administra tus eventos, participantes y solicitudes de soporte desde un solo lugar, con eficiencia y estilo.
-    </p>
-    <div class="mt-4">
-        <a class="btn btn-lg btn-outline-primary" href="/Dashboard">
-            Ir al Dashboard
-        </a>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-3 text-primary fw-bold">
+            ¡Bienvenido a Event Hall Management!
+        </h1>
+        <p class="lead text-white mt-3">
+            La plataforma integral para organizar, coordinar y potenciar tus eventos con tecnología y estilo.
+        </p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a class="btn btn-lg btn-outline-light" href="/Dashboard">Ir al Dashboard</a>
+            <a class="btn btn-lg btn-outline-info" href="/Participantes">Ver Participantes</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-10">
+            <div class="card bg-dark text-white border-light shadow-lg">
+                <div class="card-body">
+                    <h4 class="text-center text-info mb-4">Funcionalidades destacadas</h4>
+                    <div class="accordion accordion-flush" id="funcionalidadesAccordion">
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Organiza eventos
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#funcionalidadesAccordion">
+                                <div class="accordion-body text-white">
+                                    Crea eventos con fechas, categorías y espacios personalizados para cada ocasión.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Registra participantes
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#funcionalidadesAccordion">
+                                <div class="accordion-body text-white">
+                                    Administra la información de tus asistentes de forma segura y eficiente.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    Solicita soporte
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#funcionalidadesAccordion">
+                                <div class="accordion-body text-white">
+                                    Solicita asistencia técnica o logística para tus eventos en tiempo real.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-dark border-secondary">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                    Consulta estadísticas
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#funcionalidadesAccordion">
+                                <div class="accordion-body text-white">
+                                    Visualiza métricas clave en el Dashboard para tomar decisiones inteligentes.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
